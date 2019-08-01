@@ -1,0 +1,77 @@
+<!--Author - Shashank Salunkhe-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Position</title>
+    <link href="../static/mystyle.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/regular.css" integrity="sha384-EWu6DiBz01XlR6XGsVuabDMbDN6RT8cwNoY+3tIH+6pUCfaNldJYJQfQlbEIWLyA" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/regular.css" integrity="sha384-EWu6DiBz01XlR6XGsVuabDMbDN6RT8cwNoY+3tIH+6pUCfaNldJYJQfQlbEIWLyA" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/fontawesome.css" integrity="sha384-GVa9GOgVQgOk+TNYXu7S/InPTfSDTtBalSgkgqQ7sCik56N9ztlkoTr2f/T44oKV" crossorigin="anonymous">
+
+</head>
+<body class="position-pg">
+        <div class="main-container" >
+        <div class="top-container-position">
+            <div class="header-container">
+                <div class="logo-container width_25pc">
+                    <a href="/index.html" class="font_luminari">
+                        JOBS!
+                    </a>
+                </div>
+                <div class="menu-container width_75pc">
+                    <ul>
+                        <li class="home-btn">
+                            <a href="/index.html">Home</a>
+                        </li>
+                        <li class="about-btn">
+                            <a href="/about.html">About</a>
+                        </li>
+                        %if message['user']:
+                        <li class="logged-msg-holdr">
+                            Logged in as {{message['user']}}
+                        </li>
+
+                        <li class="login-btn-holder">
+                            <form id="logoutform" action="/logout" method="post">
+                                <input type="submit" class="logout-submit" value="Logout">
+                            </form>
+                        </li>
+                        %else:
+                        <form id="loginform" action="/login" method="post">
+                        <li class="login-fld-holder">
+                            <input class="username-fld" type="text" placeholder="Username" name="nick" required>
+                            <input class="password-fld" type="password" placeholder="Password" name="password" required>
+                        </li>
+                        </form>
+                        <li class="login-btn-holder">
+                            <button type="submit" class="login-submit" value="Login" form="loginform">Login</button>
+                        </li>
+                        %end
+
+                    </ul>
+
+                </div>
+            </div>
+            <div class="body-container">
+                <div class="position-text-container">
+                    <p>{{position[3]}}</p>
+                    <p>Company: {{position[5]}}</p>
+                    <p>Date Posted: {{position[1]}}</p>
+                    <p>Posted By: {{position[2]}}</p>
+                    <p>Location: {{position[4]}}</p>
+                    <span class="pos-description">{{!position[6]}}</span>
+                    <!--<div class="back-btn">Back</div>-->
+                </div>
+                <div class="back-btn" title="Click to go back" onclick="window.location='/index.html'";><i class="far fa-arrow-alt-circle-left"></i>Back</div>
+            </div>
+        </div>
+        <div class="footer-container">
+            <div class="foot-text">
+                By <a href="mailto:shashank-dileep.salunkhe@students.mq.edu.au" target="_top"> Shashank Salunkhe </a><br>
+                For Web Assignment (ITEC649)
+            </div>
+        </div>
+    </div>
+</body>
+</html>

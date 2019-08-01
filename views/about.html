@@ -1,0 +1,71 @@
+<!--Author - Shashank Salunkhe-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Jobs!</title>
+    <link href="../static/mystyle.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="about-pg">
+        <div class="main-container" >
+        <div class="top-container-about">
+            <div class="header-container">
+                <div class="logo-container width_25pc">
+                    <a href="/index.html" class="font_luminari">
+                        JOBS!
+                    </a>
+                </div>
+                <div class="menu-container width_75pc">
+                    <ul>
+                        <li class="home-btn">
+                            <a href="/index.html">Home</a>
+                        </li>
+                        <li class="about-btn">
+                            <a href="/about.html">About</a>
+                        </li>
+                        %if message['user']:
+                        <li class="logged-msg-holdr">
+                            Logged in as {{message['user']}}
+                        </li>
+
+                        <li class="login-btn-holder">
+                            <form id="logoutform" action="/logout" method="post">
+                                <input type="submit" class="logout-submit" value="Logout">
+                            </form>
+                        </li>
+                        %else:
+                        <form id="loginform" action="/login" method="post">
+                        <li class="login-fld-holder">
+                            <input class="username-fld" type="text" placeholder="Username" name="nick" required>
+                            <input class="password-fld" type="password" placeholder="Password" name="password" required>
+                        </li>
+                        </form>
+                        <li class="login-btn-holder">
+                            <!--<a href="">Login</a>-->
+                            <button type="submit" class="login-submit" value="Login" form="loginform">Login</button>
+                        </li>
+                        %end
+
+                    </ul>
+
+                </div>
+            </div>
+            <div class="body-container">
+                <div class="about-text-container">
+                    <p>About Jobs</p>
+                    Jobs is a new, exciting, job posting service like nothing you've seen before! <br>
+                    We have developed an extensive platform for job seekers across domains to be able to find their 'dream' jobs.
+                    We have tied up with hundreds of market leaders to provide timely information regarding new opportunies across their offices.
+                    We are able to provide job listings to all of the full-time as well as part-time vacancies.
+                </div>
+            </div>
+        </div>
+        <div class="footer-container">
+            <div class="foot-text">
+                By <a href="mailto:shashank-dileep.salunkhe@students.mq.edu.au" target="_top"> Shashank Salunkhe </a><br>
+                For Web Assignment (ITEC649)
+            </div>
+        </div>
+    </div>
+</body>
+</html>

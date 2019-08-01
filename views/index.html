@@ -1,0 +1,131 @@
+<!--Author - Shashank Salunkhe-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{message['title']}}</title>
+    <link href="../static/mystyle.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="home-pg">
+    <div class="main-container" >
+        <div class="top-container-home">
+            <div class="header-container">
+                <div class="logo-container width_25pc">
+                    <a href="/index.html" class="font_luminari">
+                        JOBS!
+                    </a>
+                </div>
+                <div class="menu-container width_75pc">
+                    <ul>
+                        <li class="home-btn">
+                            <a href="/index.html">Home</a>
+                        </li>
+                        <li class="about-btn">
+                            <a href="/about.html">About</a>
+                        </li>
+                        %if message['user']:
+                        <li class="logged-msg-holdr">
+                            Logged in as {{message['user']}}
+                        </li>
+
+                        <li class="login-btn-holder">
+                            <form id="logoutform" action="/logout" method="post">
+                                <input type="submit" class="logout-submit" value="Logout">
+                            </form>
+                        </li>
+                        %else:
+                        <form id="loginform" action="/login" method="post">
+                        <li class="login-fld-holder">
+                            <input class="username-fld" type="text" placeholder="Username" name="nick" required>
+                            <input class="password-fld" type="password" placeholder="Password" name="password" required>
+                        </li>
+                        </form>
+                        <li class="login-btn-holder">
+                            <!--<a href="">Login</a>-->
+                            <button type="submit" class="login-submit" value="Login" form="loginform">Login</button>
+                        </li>
+                        %end
+
+                    </ul>
+
+                </div>
+            </div>
+            <div class="body-container">
+                <div class="welcome-txt-container">
+                    <div class="welcome-txt">
+                        Welcome to Jobs
+                    </div>
+                    <div class="secondary-txt">
+                        Your Gateway to Endless Opportunities
+                    </div>
+                    <hr>
+                    <div class="query-box">
+                        <div class="query-txt">
+                            Search here to begin
+                        </div>
+                        <div class="search-container">
+
+                                <input type="text" class="query-textbox" placeholder="Job title">
+                                <select class="location-select">
+                                    <option value="">Select region</option>
+                                    <option value="Sydney">Sydney</option>
+                                    <option value="Melbourne">Melbourne</option>
+                                    <option value="Adelaide">Adelaide</option>
+                                    <option value="Perth">Perth</option>
+                                </select>
+                                <input type="submit" id="query-submit" value="Search" onclick="scrollpage()">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        %if message['user']:
+        <div class="add-job-holder">
+            <div class="add-job">
+                <div class="add-job-head">ADD JOB </div>
+            <form id="postform" method="post" action="/post">
+                <div class="row">
+                    <input type="text" class="addjob-title" name="title" placeholder="Title">
+                    <input type="text" class="addjob-location" name="location" placeholder="Location">
+                    <input type="text" class="addjob-company" name="company" placeholder="Company">
+                </div>
+                <div class="row">
+                    <textarea class="addjob-description" name="description" maxlength="200" rows="3" placeholder="Description"></textarea>
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+            </div>
+        </div>
+        %else:
+        <div></div>
+        %end
+        <div class="listings">
+            % for row in message['positions']:
+                <div class="job-container">
+                    <div class="job-container-head">
+                        <div class="job-title">
+                            <span>{{row[3]}}</span>
+                        </div>
+                    </div>
+                    <div class="job-container-body">
+                        <div class="job-owner"><b>Posted By:</b> {{row[2]}}</div>
+                        <div class="job-timestamp"><b>Posted on:</b> {{row[1]}}</div>
+                        <div class="job-description">{{!row[6][:100]}} ... </div>
+                        <div class="job-readmore"><a href="/positions/{{row[0]}}">Read More</a> </div>
+                    </div>
+                </div>
+            % end
+        </div>
+
+        <div class="footer-container">
+            <div class="foot-text">
+                By <a href="mailto:shashank-dileep.salunkhe@students.mq.edu.au" target="_top"> Shashank Salunkhe </a><br>
+                For Web Assignment (ITEC649)
+            </div>
+        </div>
+    </div>
+    <script src="../static/myscript.js" type="text/javascript"></script>
+</body>
+</html>
